@@ -20,6 +20,23 @@ namespace Blog.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            //TODO: Move to separate configs
+            modelBuilder.Entity<Post>()
+                .HasOne(p => p.Author)
+                .WithMany(p => p.Posts)
+                .HasForeignKey(fk => fk.AuthorId);
+
+            modelBuilder.Entity<Post>().HasOne(p => p.Blog)
+                .WithMany(p => p.Posts)
+                .HasForeignKey(fk => fk.BlogId);
+
+            modelBuilder.Entity<Blog>().HasOne(p => p.Author)
+                .WithMany(p => p.Blogs)
+                .HasForeignKey(fk => fk.AuthorId);
+
+            
+
             base.OnModelCreating(modelBuilder);
         }
     }

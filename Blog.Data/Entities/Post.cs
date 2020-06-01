@@ -11,10 +11,10 @@ namespace Blog.Data
 
         public DateTime Publication { get; set; }
 
-        public int BlogId { get; set; }
+        public int? BlogId { get; set; }
         public Blog Blog { get; set; }
 
-        public int AuthorId { get; set; }
+        public int? AuthorId { get; set; }
         public User Author { get; set; }
     }
 }

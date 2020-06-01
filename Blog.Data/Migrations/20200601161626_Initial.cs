@@ -26,7 +26,7 @@ namespace Blog.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    AuthorId = table.Column<int>(nullable: false)
+                    AuthorId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,7 +36,7 @@ namespace Blog.Data.Migrations
                         column: x => x.AuthorId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,8 +48,8 @@ namespace Blog.Data.Migrations
                     Name = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
                     Publication = table.Column<DateTime>(nullable: false),
-                    BlogId = table.Column<int>(nullable: false),
-                    AuthorId = table.Column<int>(nullable: false)
+                    BlogId = table.Column<int>(nullable: true),
+                    AuthorId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -59,13 +59,13 @@ namespace Blog.Data.Migrations
                         column: x => x.AuthorId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Posts_Blogs_BlogId",
                         column: x => x.BlogId,
                         principalTable: "Blogs",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
