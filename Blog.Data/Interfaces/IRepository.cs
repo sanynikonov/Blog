@@ -11,13 +11,17 @@ namespace Blog.Data
     {
         IQueryable<TEntity> GetAll();
         Task<TEntity> GetByIdAsync(int id);
-        Task<IEnumerable<TEntity>> GetAsync(Func<TEntity, bool> predicate);
+        Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate);
 
         Task<IEnumerable<TEntity>> GetAndIncludeAsync(params Expression<Func<TEntity, object>>[] includeProperties);
+        Task<IEnumerable<TEntity>> GetAndIncludeAsync(Expression<Func<TEntity, bool>> predicate,
+            params Expression<Func<TEntity, object>>[] includeProperties);
         Task<IEnumerable<TEntity>> GetAndIncludeAsync(Expression<Func<TEntity, bool>> predicate,
             Dictionary<Expression<Func<TEntity, object>>, Expression<Func<object, object>>[]> includeThenIncludeArrayPairs);
 
         Task<TEntity> GetByIdAndIncludeAsync(int id, params Expression<Func<TEntity, object>>[] includeProperties);
+        Task<TEntity> GetByIdAndIncludeAsync(int id, Expression<Func<TEntity, bool>> predicate, 
+            params Expression<Func<TEntity, object>>[] includeProperties);
         Task<TEntity> GetByIdAndIncludeAsync(int id,
             Dictionary<Expression<Func<TEntity, object>>, Expression<Func<object, object>>[]> includeThenIncludeArrayPairs);
 

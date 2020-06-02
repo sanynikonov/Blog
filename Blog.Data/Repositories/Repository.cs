@@ -23,7 +23,7 @@ namespace Blog.Data
             return entities;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAsync(Func<TEntity, bool> predicate)
+        public async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await entities.Where(predicate).AsQueryable().ToListAsync();
         }
@@ -71,9 +71,24 @@ namespace Blog.Data
             return await Include(includeProperties).ToListAsync();
         }
 
+        public async Task<IEnumerable<TEntity>> GetAndIncludeAsync(Expression<Func<TEntity, bool>> predicate, 
+            params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            return await Include(includeProperties)
+                .Where(predicate)
+                .ToListAsync();
+        }
+
         public async Task<TEntity> GetByIdAndIncludeAsync(int id, params Expression<Func<TEntity, object>>[] includeProperties)
         {
             var query = Include(includeProperties);
+            return await query.SingleOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<TEntity> GetByIdAndIncludeAsync(int id, Expression<Func<TEntity, bool>> predicate, 
+            params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            var query = Include(includeProperties).Where(predicate);
             return await query.SingleOrDefaultAsync(x => x.Id == id);
         }
 
