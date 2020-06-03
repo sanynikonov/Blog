@@ -10,8 +10,8 @@ namespace Blog.Business.Services
 {
     public class BlogService : IBlogService
     {
-        private IUnitOfWork unit;
-        private IMapper mapper;
+        private readonly IUnitOfWork unit;
+        private readonly IMapper mapper;
 
         public BlogService(IUnitOfWork unit, IMapper mapper)
         {

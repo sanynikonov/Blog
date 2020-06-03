@@ -7,7 +7,7 @@ namespace Blog.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private BlogContext context;
+        private readonly BlogContext context;
 
         public UnitOfWork(BlogContext context, IRepository<User> userRepository, IRepository<Blog> blogRepository, IRepository<Post> postRepository)
         {

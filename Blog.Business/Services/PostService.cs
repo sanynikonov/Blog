@@ -9,8 +9,8 @@ namespace Blog.Business
 {
     public class PostService : IPostService
     {
-        private IUnitOfWork unit;
-        private IMapper mapper;
+        private readonly IUnitOfWork unit;
+        private readonly IMapper mapper;
 
         public PostService(IUnitOfWork unit, IMapper mapper)
         {
