@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
+using Blog.Business;
 
 namespace Blog.Presentation
 {
@@ -32,6 +33,14 @@ namespace Blog.Presentation
                 options => options.UseSqlServer(Configuration.GetConnectionString("BlogDbConnection")));
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<IBlogService, BlogService>();
+
+            services.AddScoped<IPostService, PostService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

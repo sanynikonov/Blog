@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Business.Services
+namespace Blog.Business
 {
     public class BlogService : IBlogService
     {
