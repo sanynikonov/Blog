@@ -21,7 +21,16 @@ namespace Blog.Business.Services
 
         public async Task Create(BlogModel model, int userId)
         {
-            throw new NotImplementedException();
+            var user = await unit.UserRepository.GetByIdAndIncludeAsync(userId, x => x.Blogs);
+
+            if (user == null)
+                throw new InvalidOperationException($"Blog with id {userId} does not exist.");
+
+            var blog = mapper.Map<Data.Blog>(model);
+
+            user.Blogs.Add(blog);
+
+            await unit.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<BlogActivityInfoModel>> GetByBiggestActivityInPeriod(DateTime oldest, DateTime latest)
