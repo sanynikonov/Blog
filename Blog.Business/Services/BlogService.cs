@@ -19,7 +19,7 @@ namespace Blog.Business.Services
             this.mapper = mapper;
         }
 
-        public async Task Create(BlogModel model)
+        public async Task Create(BlogModel model, int userId)
         {
             throw new NotImplementedException();
         }
