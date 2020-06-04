@@ -21,5 +21,12 @@ namespace Blog.Presentation.Controllers
 
             return View(await blogService.GetAll());
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var blog = await blogService.GetById(id);
+
+            return View(blog);
+        }
     }
 }

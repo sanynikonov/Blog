@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Blog.Business
 {
@@ -67,7 +68,12 @@ namespace Blog.Business
 
         public async Task<BlogModel> GetById(int id)
         {
-            var blog = await unit.BlogRepository.GetByIdAsync(id);
+            var includes = new Dictionary<Expression<Func<Data.Blog, object>>, Expression<Func<object, object>>[]>
+            {
+                { x => x.Posts, new Expression<Func<object, object>>[] { x => ((Post)x).Author } }
+            };
+
+            var blog = await unit.BlogRepository.GetByIdAndIncludeAsync(id, includes);
 
             return mapper.Map<BlogModel>(blog);
         }
