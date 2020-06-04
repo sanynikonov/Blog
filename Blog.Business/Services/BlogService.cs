@@ -33,6 +33,13 @@ namespace Blog.Business
             await unit.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<BlogListItemModel>> GetAll()
+        {
+            var blogs = await unit.BlogRepository.GetAsync(x => true);
+
+            return mapper.Map<IEnumerable<BlogListItemModel>>(blogs);
+        }
+
         public async Task<IEnumerable<BlogActivityInfoModel>> GetByBiggestActivityInPeriod(DateTime oldest, DateTime latest)
         {
             var blogs = await unit.BlogRepository.GetAndIncludeAsync(
