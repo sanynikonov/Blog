@@ -8,16 +8,21 @@
 
 <div>
 
+    @Html.ActionLink("Create new post", "CreatePostInBlog", new { blogId = Model.Id })
+
     <hr />
 
     @foreach (var post in Model.Posts)
     {
         <div class="mb-2 border p-3">
-            <div class="d-flex justify-content-between">
-                <p class="font-weight-bold">@post.Author.FirstName</p>
-                <p>@post.Publication.ToShortDateString()</p>
-            </div>
+            <h5>@post.Name</h5>
+            <hr />
             <p>@post.Content</p>
+            <hr />
+            <div class="d-flex justify-content-between small ml-1 mr-1">
+                <p>@post.Author.FirstName</p>
+                <p>@post.Publication</p>
+            </div>
         </div>
     }
 </div>
