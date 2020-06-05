@@ -13,7 +13,8 @@ namespace Blog.Presentation
         public AutoMapperProfile()
         {
             CreateMap<Post, PostModel>()
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(p => p.Publication, c => c.MapFrom(p => DateTime.Now));
 
             CreateMap<User, PostAuthorInfoModel>();
 
