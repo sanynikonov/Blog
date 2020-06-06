@@ -45,7 +45,7 @@ namespace Blog.Business
         public async Task<IEnumerable<PostModel>> GetByName(string name)
         {
             var posts = await unit.PostRepository.GetAsync(
-                x => x.Name.Contains(name, StringComparison.InvariantCultureIgnoreCase));
+                x => x.Name.Contains(name));
 
             return mapper.Map<IEnumerable<PostModel>>(posts);
         }
@@ -53,7 +53,7 @@ namespace Blog.Business
         public async Task<IEnumerable<PostModel>> GetByPartialContent(string content)
         {
             var posts = await unit.PostRepository.GetAsync(
-                x => x.Name.Contains(content, StringComparison.InvariantCultureIgnoreCase));
+                x => x.Name.Contains(content));
 
             return mapper.Map<IEnumerable<PostModel>>(posts);
         }

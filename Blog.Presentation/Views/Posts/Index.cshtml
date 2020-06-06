@@ -1,0 +1,35 @@
+﻿@model PostSearchViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Interesting posts</h1>
+
+<form asp-controller="Posts" asp-action="Index" method="get">
+    <p>
+
+        @*<select asp-for="SearchByType">
+            <option value="Name">By name</option>
+            <option value="Content">By content</option>
+        </select>*@
+
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<hr />
+
+@foreach (var post in Model.Posts.OrderByDescending(x => x.Publication))
+{
+    <div class="mb-2 border p-3">
+        <h5>@post.Name</h5>
+        <hr />
+        <p>@post.Content</p>
+        <hr />
+        <div class="d-flex justify-content-between small ml-1 mr-1">
+            <p>@post.Publication</p>
+        </div>
+    </div>
+}
