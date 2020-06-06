@@ -22,7 +22,6 @@ namespace Blog.Presentation.Controllers
 
         public async Task<IActionResult> Index()
         {
-
             return View(await blogService.GetAll());
         }
 

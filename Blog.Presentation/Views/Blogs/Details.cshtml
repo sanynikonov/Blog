@@ -12,7 +12,7 @@
 
     <hr />
 
-    @foreach (var post in Model.Posts)
+    @foreach (var post in Model.Posts.OrderByDescending(x => x.Publication))
     {
         <div class="mb-2 border p-3">
             <h5>@post.Name</h5>
