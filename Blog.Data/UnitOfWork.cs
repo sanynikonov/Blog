@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,18 +10,24 @@ namespace Blog.Data
     {
         private readonly BlogContext context;
 
-        public UnitOfWork(BlogContext context, IRepository<Blog> blogRepository, IRepository<Post> postRepository)
+        public UnitOfWork(BlogContext context, IRepository<Blog> blogRepository, 
+                            IRepository<Post> postRepository, UserManager<User> userManager, 
+                            SignInManager<User> signInManager)
         {
             this.context = context;
             BlogRepository = blogRepository;
             PostRepository = postRepository;
+            UserManager = userManager;
+            SignInManager = signInManager;
         }
 
         public IRepository<Blog> BlogRepository { get; }
 
         public IRepository<Post> PostRepository { get; }
 
+        public UserManager<User> UserManager { get; }
 
+        public SignInManager<User> SignInManager { get; }
 
         public async Task SaveChangesAsync()
         {
