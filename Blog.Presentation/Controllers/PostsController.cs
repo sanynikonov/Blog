@@ -17,23 +17,23 @@ namespace Blog.Presentation.Controllers
             this.postService = postService;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchByType, string searchString)
         {
             var model = new PostSearchViewModel();
 
-            if (!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString) && !string.IsNullOrEmpty(searchByType))
             {
-                model.Posts = await postService.GetByName(searchString);
+                if (searchByType == "Name")
+                    model.Posts = await postService.GetByName(searchString);
+
+                else if (searchByType == "Content")
+                    model.Posts = await postService.GetByPartialContent(searchString);
+
+                else
+                    return BadRequest($"Search type {searchByType} not found.");
             }
 
             return View(model);
-        }
-
-        public async Task<IActionResult> Search()
-        {
-            IEnumerable<PostModel> posts = new List<PostModel>();
-
-            return View(posts);
         }
     }
 }
