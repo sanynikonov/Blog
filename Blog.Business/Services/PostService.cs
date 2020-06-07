@@ -53,7 +53,7 @@ namespace Blog.Business
         public async Task<IEnumerable<PostModel>> GetByPartialContent(string content)
         {
             var posts = await unit.PostRepository.GetAsync(
-                x => x.Name.Contains(content));
+                x => x.Content.Contains(content));
 
             return mapper.Map<IEnumerable<PostModel>>(posts);
         }
