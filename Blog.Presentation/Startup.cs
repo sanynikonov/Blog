@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AutoMapper;
 using Blog.Business;
+using Microsoft.AspNetCore.Identity;
 
 namespace Blog.Presentation
 {
@@ -31,6 +32,10 @@ namespace Blog.Presentation
 
             services.AddDbContextPool<BlogContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("BlogDbConnection")));
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<BlogContext>()
+                .AddDefaultTokenProviders();
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
 

@@ -22,16 +22,16 @@ namespace Blog.Business
 
         public async Task Create(BlogModel model, int userId)
         {
-            var user = await unit.UserRepository.GetByIdAndIncludeAsync(userId, x => x.Blogs);
+            //var user = await unit.UserRepository.GetByIdAndIncludeAsync(userId, x => x.Blogs);
 
-            if (user == null)
-                throw new InvalidOperationException($"Blog with id {userId} does not exist.");
+            //if (user == null)
+            //    throw new InvalidOperationException($"Blog with id {userId} does not exist.");
 
-            var blog = mapper.Map<Data.Blog>(model);
+            //var blog = mapper.Map<Data.Blog>(model);
 
-            user.Blogs.Add(blog);
+            //user.Blogs.Add(blog);
 
-            await unit.SaveChangesAsync();
+            //await unit.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<BlogListItemModel>> GetAll()
@@ -49,19 +49,19 @@ namespace Blog.Business
 
             var models = new List<BlogActivityInfoModel>();
 
-            foreach (var blog in blogs)
-            {
-                var activeUsers = await unit.UserRepository.GetAsync(user => blog.Posts.Any(post => post.AuthorId != null && post.AuthorId == user.Id));
+            //foreach (var blog in blogs)
+            //{
+            //    var activeUsers = await unit.UserRepository.GetAsync(user => blog.Posts.Any(post => post.AuthorId != null && post.AuthorId == user.Id));
 
-                var model = new BlogActivityInfoModel
-                {
-                    Blog = mapper.Map<BlogListItemModel>(blog),
-                    PostsCount = blog.Posts.Count(),
-                    UsersCount = activeUsers.Count()
-                };
+            //    var model = new BlogActivityInfoModel
+            //    {
+            //        Blog = mapper.Map<BlogListItemModel>(blog),
+            //        PostsCount = blog.Posts.Count(),
+            //        UsersCount = activeUsers.Count()
+            //    };
 
-                models.Add(model);
-            }
+            //    models.Add(model);
+            //}
 
             return models;
         }

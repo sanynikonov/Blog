@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Blog.Data
 {
-    public class User : BaseEntity
+    public class User : IdentityUser
     {
         public ICollection<Blog> Blogs { get; set; }
         public ICollection<Post> Posts { get; set; }

@@ -8,7 +8,7 @@ namespace Blog.Data
     {
         public string Name { get; set; }
 
-        public int? AuthorId { get; set; }
+        public string AuthorId { get; set; }
         public User Author { get; set; }
         public ICollection<Post> Posts { get; set; }
 

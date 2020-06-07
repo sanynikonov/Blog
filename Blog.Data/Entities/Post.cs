@@ -14,7 +14,7 @@ namespace Blog.Data
         public int? BlogId { get; set; }
         public Blog Blog { get; set; }
 
-        public int? AuthorId { get; set; }
+        public string AuthorId { get; set; }
         public User Author { get; set; }
     }
 }

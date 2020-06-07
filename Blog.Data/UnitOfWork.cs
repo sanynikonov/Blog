@@ -9,15 +9,12 @@ namespace Blog.Data
     {
         private readonly BlogContext context;
 
-        public UnitOfWork(BlogContext context, IRepository<User> userRepository, IRepository<Blog> blogRepository, IRepository<Post> postRepository)
+        public UnitOfWork(BlogContext context, IRepository<Blog> blogRepository, IRepository<Post> postRepository)
         {
             this.context = context;
-            UserRepository = userRepository;
             BlogRepository = blogRepository;
             PostRepository = postRepository;
         }
-
-        public IRepository<User> UserRepository { get; }
 
         public IRepository<Blog> BlogRepository { get; }
 

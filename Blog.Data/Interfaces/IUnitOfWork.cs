@@ -7,7 +7,6 @@ namespace Blog.Data
 {
     public interface IUnitOfWork
     {
-        IRepository<User> UserRepository { get; }
         IRepository<Blog> BlogRepository { get; }
         IRepository<Post> PostRepository { get; }
 
