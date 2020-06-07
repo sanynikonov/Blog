@@ -7,16 +7,19 @@
 <h1>Interesting posts</h1>
 
 <form asp-controller="Posts" asp-action="Index" method="get">
-    <p>
 
-        <select asp-for="SearchByType">
-            <option value="Name">By name</option>
-            <option value="Content">By content</option>
-        </select>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <select class="custom-select" asp-for="SearchByType">
+                <option value="Name">By name</option>
+                <option value="Content">By content</option>
+            </select>
+        </div>
+        <input type="text" asp-for="SearchString" class="form-control" placeholder="Search..." aria-label="" aria-describedby="basic-addon1">
 
-        Title: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" />
-    </p>
+        <input class="btn btn-primary" type="submit" value="GO" />
+    </div>
+
 </form>
 
 <hr />
