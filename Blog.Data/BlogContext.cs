@@ -35,8 +35,6 @@ namespace Blog.Data
                 .WithMany(p => p.Blogs)
                 .HasForeignKey(fk => fk.AuthorId);
 
-            
-
             base.OnModelCreating(modelBuilder);
         }
     }

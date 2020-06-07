@@ -12,7 +12,7 @@ namespace Blog.Business
 
         public DateTime Publication { get; set; }
 
-        public int? AuthorId { get; set; }
+        public string AuthorId { get; set; }
         public PostAuthorInfoModel Author { get; set; }
     }
 }

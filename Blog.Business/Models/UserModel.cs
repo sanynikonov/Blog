@@ -6,7 +6,7 @@ namespace Blog.Business
 {
     public class UserModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; } = "Ivan";
         public string LastName { get; set; } = "Ivanenko";
 

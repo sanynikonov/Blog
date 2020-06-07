@@ -35,7 +35,7 @@ namespace Blog.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePostInBlog(PostFormViewModel model)
         {
-            var post = new PostModel { Name = model.Name, Content = model.Content, AuthorId = 1 };
+            var post = new PostModel { Name = model.Name, Content = model.Content };
 
             await postService.AddToBlog(post, model.BlogId);
 

@@ -28,10 +28,10 @@ namespace Blog.Business
             if (model.AuthorId == null)
                 throw new ArgumentNullException($"Author id was null.");
 
-            //var author = await unit.UserRepository.GetByIdAsync(model.AuthorId.Value);
+            var author = await unit.UserManager.FindByIdAsync(model.AuthorId);
 
-            //if (author == null)
-            //    throw new ArgumentException($"User with id {model.AuthorId.Value} does not exist.");
+            if (author == null)
+                throw new ArgumentException($"User with id {model.AuthorId} does not exist.");
 
             var post = mapper.Map<Post>(model);
 
