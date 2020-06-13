@@ -10,7 +10,7 @@ namespace Blog.Data
     {
         IRepository<Blog> BlogRepository { get; }
         IRepository<Post> PostRepository { get; }
-        IRepository<User> UserRepository { get; }
+        //IRepository<User> UserRepository { get; }
         UserManager<User> UserManager { get; }
         SignInManager<User> SignInManager { get; }
 

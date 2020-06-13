@@ -20,9 +20,9 @@ namespace Blog.Business
             this.mapper = mapper;
         }
 
-        public async Task Create(BlogModel model, int userId)
+        public async Task Create(BlogModel model, string userId)
         {
-            var user = await unit.UserRepository.GetByIdAndIncludeAsync(userId, x => x.Blogs);
+            var user = await unit.UserManager.FindByIdAsync(userId);
 
             if (user == null)
                 throw new InvalidOperationException($"User with id {userId} does not exist.");
