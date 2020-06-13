@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog.Business.Services
+namespace Blog.Business
 {
     public class UserService : IUserService
     {
-        private IUnitOfWork unit;
+        private readonly IUnitOfWork unit;
 
         public UserService(IUnitOfWork unit)
         {
