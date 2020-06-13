@@ -24,6 +24,10 @@
     <ProjectReference Include="..\Blog.Business\Blog.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+  </ItemGroup>
+
 
 
 </Project>
