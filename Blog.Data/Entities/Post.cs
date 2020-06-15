@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Blog.Data
 {
-    public class Post : BaseEntity
+    public class Post : IBaseEntity<int>
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Content { get; set; }
 
