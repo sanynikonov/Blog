@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Data
 {
-    public class Repository<TKey, TEntity> : IRepository<TKey, TEntity> where TEntity : class, IBaseEntity<TKey>
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly DbSet<TEntity> entities;
 
@@ -28,7 +28,7 @@ namespace Blog.Data
             return await entities.Where(predicate).AsQueryable().ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(TKey id)
+        public async Task<TEntity> GetByIdAsync(int id)
         {
             return await entities.FindAsync(id);
         }
@@ -38,7 +38,7 @@ namespace Blog.Data
             await entities.AddAsync(entity);
         }
 
-        public async Task RemoveByIdAsync(TKey id)
+        public async Task RemoveByIdAsync(int id)
         {
             var entity = await entities.FindAsync(id);
             
@@ -59,11 +59,11 @@ namespace Blog.Data
                 .ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAndIncludeAsync(TKey id, 
+        public async Task<TEntity> GetByIdAndIncludeAsync(int id, 
             Dictionary<Expression<Func<TEntity, object>>, Expression<Func<object, object>>[]> includeThenIncludeArrayPairs)
         {
             var query = Include(includeThenIncludeArrayPairs);
-            return await query.SingleOrDefaultAsync(x => x.Id.Equals(id));
+            return await query.SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<TEntity>> GetAndIncludeAsync(params Expression<Func<TEntity, object>>[] includeProperties)
@@ -79,17 +79,17 @@ namespace Blog.Data
                 .ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAndIncludeAsync(TKey id, params Expression<Func<TEntity, object>>[] includeProperties)
+        public async Task<TEntity> GetByIdAndIncludeAsync(int id, params Expression<Func<TEntity, object>>[] includeProperties)
         {
             var query = Include(includeProperties);
-            return await query.SingleOrDefaultAsync(x => x.Id.Equals(id));
+            return await query.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<TEntity> GetByIdAndIncludeAsync(TKey id, Expression<Func<TEntity, bool>> predicate, 
+        public async Task<TEntity> GetByIdAndIncludeAsync(int id, Expression<Func<TEntity, bool>> predicate, 
             params Expression<Func<TEntity, object>>[] includeProperties)
         {
             var query = Include(includeProperties).Where(predicate);
-            return await query.SingleOrDefaultAsync(x => x.Id.Equals(id));
+            return await query.SingleOrDefaultAsync(x => x.Id == id);
         }
 
 

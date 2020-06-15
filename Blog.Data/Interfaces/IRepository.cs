@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Blog.Data
 {
-    public interface IRepository<TKey, TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         IQueryable<TEntity> GetAll();
-        Task<TEntity> GetByIdAsync(TKey id);
+        Task<TEntity> GetByIdAsync(int id);
         Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate);
 
         Task<IEnumerable<TEntity>> GetAndIncludeAsync(params Expression<Func<TEntity, object>>[] includeProperties);
@@ -19,14 +19,14 @@ namespace Blog.Data
         Task<IEnumerable<TEntity>> GetAndIncludeAsync(Expression<Func<TEntity, bool>> predicate,
             Dictionary<Expression<Func<TEntity, object>>, Expression<Func<object, object>>[]> includeThenIncludeArrayPairs);
 
-        Task<TEntity> GetByIdAndIncludeAsync(TKey id, params Expression<Func<TEntity, object>>[] includeProperties);
-        Task<TEntity> GetByIdAndIncludeAsync(TKey id, Expression<Func<TEntity, bool>> predicate, 
+        Task<TEntity> GetByIdAndIncludeAsync(int id, params Expression<Func<TEntity, object>>[] includeProperties);
+        Task<TEntity> GetByIdAndIncludeAsync(int id, Expression<Func<TEntity, bool>> predicate, 
             params Expression<Func<TEntity, object>>[] includeProperties);
-        Task<TEntity> GetByIdAndIncludeAsync(TKey id,
+        Task<TEntity> GetByIdAndIncludeAsync(int id,
             Dictionary<Expression<Func<TEntity, object>>, Expression<Func<object, object>>[]> includeThenIncludeArrayPairs);
 
         Task AddAsync(TEntity entity);
-        Task RemoveByIdAsync(TKey id);
+        Task RemoveByIdAsync(int id);
         void Update(TEntity entity);
     }
 }

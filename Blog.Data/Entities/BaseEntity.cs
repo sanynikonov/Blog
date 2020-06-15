@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Blog.Data
 {
-    public interface IBaseEntity<TKey>
+    public abstract class BaseEntity
     {
-        public TKey Id { get; set; }
+        public int Id { get; set; }
     }
 }

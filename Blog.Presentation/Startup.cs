@@ -39,7 +39,7 @@ namespace Blog.Presentation
 
             services.AddAutoMapper(typeof(AutoMapperProfile));
 
-            services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

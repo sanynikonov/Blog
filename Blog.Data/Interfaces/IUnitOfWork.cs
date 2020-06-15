@@ -8,9 +8,9 @@ namespace Blog.Data
 {
     public interface IUnitOfWork
     {
-        IRepository<int, Blog> BlogRepository { get; }
-        IRepository<int, Post> PostRepository { get; }
-        IRepository<string, User> UserRepository { get; }
+        IRepository<Blog> BlogRepository { get; }
+        IRepository<Post> PostRepository { get; }
+        //IRepository<User> UserRepository { get; }
         UserManager<User> UserManager { get; }
         SignInManager<User> SignInManager { get; }
 

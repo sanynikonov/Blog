@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog.Business;
 using Blog.Presentation.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
@@ -15,13 +13,11 @@ namespace Blog.Presentation.Controllers
     {
         private readonly IBlogService blogService;
         private readonly IPostService postService;
-        private readonly IUserService userService;
 
-        public BlogsController(IBlogService blogService, IPostService postService, IUserService userService)
+        public BlogsController(IBlogService blogService, IPostService postService)
         {
             this.blogService = blogService;
             this.postService = postService;
-            this.userService = userService;
         }
 
         public async Task<IActionResult> Index()
@@ -39,9 +35,7 @@ namespace Blog.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePostInBlog(PostFormViewModel model)
         {
-            var userId = userService.GetUserId(User);
-
-            var post = new PostModel { Name = model.Name, Content = model.Content, AuthorId = userId };
+            var post = new PostModel { Name = model.Name, Content = model.Content };
 
             await postService.AddToBlog(post, model.BlogId);
 
@@ -52,32 +46,6 @@ namespace Blog.Presentation.Controllers
         public IActionResult CreatePostInBlog(int blogId)
         {
             return View(new PostFormViewModel { BlogId = blogId });
-        }
-
-        [Authorize]
-        [HttpGet]
-        public async Task<IActionResult> Create()
-        {
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Create(BlogModel model)
-        {
-            var userId = userService.GetUserId(User);
-
-            await blogService.Create(model, userId);
-
-            return RedirectToAction("GetByUser");
-        }
-
-        [Authorize]
-        public async Task<IActionResult> GetByUser()
-        {
-            var userId = userService.GetUserId(User);
-
-            return View("Index", await blogService.GetByUserId(userId));
         }
     }
 }

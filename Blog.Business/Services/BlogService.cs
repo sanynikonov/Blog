@@ -77,12 +77,5 @@ namespace Blog.Business
 
             return mapper.Map<BlogModel>(blog);
         }
-
-        public async Task<IEnumerable<BlogListItemModel>> GetByUserId(string userId)
-        {
-            var user = await unit.UserRepository.GetByIdAndIncludeAsync(userId, p => p.Blogs);
-
-            return mapper.Map<IEnumerable<BlogListItemModel>>(user.Blogs);
-        }
     }
 }
