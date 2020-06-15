@@ -6,7 +6,7 @@ namespace Blog.Business
 {
     public class PostAuthorInfoModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; } = "Ivan";
     }
 }

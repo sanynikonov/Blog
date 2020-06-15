@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Blog.Data
 {
-    public class User : IdentityUser
+    public class User : IdentityUser, IBaseEntity<string>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
