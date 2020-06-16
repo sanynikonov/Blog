@@ -66,5 +66,12 @@ namespace Blog.Presentation.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await userService.Logout();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
