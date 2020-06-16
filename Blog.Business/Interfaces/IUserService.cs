@@ -12,5 +12,6 @@ namespace Blog.Business
         Task<SignInResult> Login(LoginModel model);
         Task<IdentityResult> Register(RegisterModel model);
         string GetUserId(ClaimsPrincipal principal);
+        Task Logout();
     }
 }

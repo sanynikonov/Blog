@@ -27,6 +27,11 @@ namespace Blog.Business
             return await unit.SignInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
         }
 
+        public async Task Logout()
+        {
+            await unit.SignInManager.SignOutAsync();
+        }
+
         public async Task<IdentityResult> Register(RegisterModel model)
         {
             var user = new User
