@@ -9,9 +9,9 @@ namespace Blog.Presentation.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IUserService userService;
+        private readonly IAuthService userService;
 
-        public AccountController(IUserService userService)
+        public AccountController(IAuthService userService)
         {
             this.userService = userService;
         }

@@ -47,7 +47,7 @@ namespace Blog.Presentation
 
             services.AddScoped<IPostService, PostService>();
 
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

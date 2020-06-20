@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Business
 {
-    public interface IUserService
+    public interface IAuthService
     {
         Task<SignInResult> Login(LoginModel model);
         Task<IdentityResult> Register(RegisterModel model);

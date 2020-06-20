@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Blog.Business
 {
-    public class UserService : IUserService
+    public class AuthService : IAuthService
     {
         private readonly IUnitOfWork unit;
 
-        public UserService(IUnitOfWork unit)
+        public AuthService(IUnitOfWork unit)
         {
             this.unit = unit;
         }

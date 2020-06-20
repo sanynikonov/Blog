@@ -15,9 +15,9 @@ namespace Blog.Presentation.Controllers
     {
         private readonly IBlogService blogService;
         private readonly IPostService postService;
-        private readonly IUserService userService;
+        private readonly IAuthService userService;
 
-        public BlogsController(IBlogService blogService, IPostService postService, IUserService userService)
+        public BlogsController(IBlogService blogService, IPostService postService, IAuthService userService)
         {
             this.blogService = blogService;
             this.postService = postService;
