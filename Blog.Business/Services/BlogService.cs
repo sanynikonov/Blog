@@ -51,13 +51,14 @@ namespace Blog.Business
 
             foreach (var blog in blogs)
             {
-                var activeUsers = unit.UserManager.Users.Where(user => blog.Posts.Any(post => post.AuthorId != null && post.AuthorId == user.Id)).ToList();
+                var activeUsersCount = unit.UserManager.Users
+                    .Where(user => blog.Posts.Any(post => post.AuthorId != null && post.AuthorId == user.Id)).Count();
 
                 var model = new BlogActivityInfoModel
                 {
                     Blog = mapper.Map<BlogListItemModel>(blog),
                     PostsCount = blog.Posts.Count(),
-                    UsersCount = activeUsers.Count()
+                    UsersCount = activeUsersCount
                 };
 
                 models.Add(model);
