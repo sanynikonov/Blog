@@ -25,7 +25,7 @@ namespace Blog.Data
 
         public async Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return await entities.Where(predicate).AsQueryable().ToListAsync();
+            return await entities.Where(predicate).ToListAsync();
         }
 
         public async Task<TEntity> GetByIdAsync(TKey id)
