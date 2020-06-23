@@ -79,5 +79,12 @@ namespace Blog.Presentation.Controllers
 
             return View("Index", await blogService.GetByUserId(userId));
         }
+
+        public async Task<IActionResult> GetByBiggestActivityInPeriod(DateTime oldest, DateTime latest)
+        {
+            var blogs = await blogService.GetByBiggestActivityInPeriod(oldest, latest);
+
+            return View(new BlogActivitySearchViewModel { Blogs = blogs });
+        }
     }
 }
