@@ -1,0 +1,31 @@
+﻿@model BlogActivitySearchViewModel
+
+@{
+    ViewData["Title"] = "Most Active Blogs";
+}
+
+<h1>GetByBiggestActivityInPeriod</h1>
+
+<form asp-controller="Blogs" asp-action="GetByBiggestActivityInPeriod" method="get">
+
+    <div class="form-group">
+        <label for="inputDate">Oldest date</label>
+        <input type="date" class="form-control" asp-for="Oldest">
+    </div>
+    <div class="form-group">
+        <label for="inputDate">Latest date</label>
+        <input type="date" class="form-control" asp-for="Latest">
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="Search" />
+
+</form>
+
+<hr />
+
+@foreach(var blog in Model.Blogs)
+{
+    <div>
+        <p>@($"{blog.Blog.Name}: Posts - {blog.PostsCount}, Active Users - {blog.UsersCount}")</p>
+    </div>
+}
