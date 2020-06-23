@@ -51,8 +51,9 @@ namespace Blog.Business
 
             foreach (var blog in blogs)
             {
-                var activeUsersCount = unit.UserManager.Users
-                    .Where(user => blog.Posts.Any(post => post.AuthorId != null && post.AuthorId == user.Id)).Count();
+                var postsAuthorIds = blog.Posts.Select(x => x.AuthorId);
+
+                var activeUsersCount = unit.UserManager.Users.Count(user => postsAuthorIds.Any(authorId => authorId == user.Id));
 
                 var model = new BlogActivityInfoModel
                 {
@@ -64,7 +65,7 @@ namespace Blog.Business
                 models.Add(model);
             }
 
-            return models;
+            return models.OrderByDescending(x => x.PostsCount + x.UsersCount);
         }
 
         public async Task<BlogModel> GetById(int id)
